@@ -28,11 +28,20 @@ const spiralMatrix = matrix => {
     for (let i = endColumn; i >= startColumn; i--) {
       result.push(matrix[endRow][i]);
     }
+    endRow--;
 
     // First col
     for (let i = endRow; i >= startRow; i--) {
       result.push(matrix[i][startColumn]);
     }
+    startColumn++;
+
+    // Middle row
+    for (let i = startColumn; i <= endColumn; i++) {
+      result.push(matrix[startRow][i]);
+    }
+    startColumn++;
+    startRow++;
   }
 
   return result;
@@ -52,11 +61,11 @@ console.log(
 // [2, 1]..[2, 0]
 // [1, 0]..[1, 1]
 
-// console.log(
-//   spiralMatrix([
-//     [1, 2, 3, 4],
-//     [5, 6, 7, 8],
-//     [9, 10, 11, 12],
-//   ])
-// );
+console.log(
+  spiralMatrix([
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12],
+  ])
+);
 // [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7];
