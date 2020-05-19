@@ -35,11 +35,11 @@ const romanToInteger = roman => {
   let i = 0;
   let sum = 0;
 
-  while (i < roman.length) {
-    let currentValue = MAP[roman[i]];
+  while (i < s.length) {
+    let currentValue = MAP[s[i]];
 
-    if (i + 1 < roman.length) {
-      let nextValue = MAP[roman[i + 1]];
+    if (i + 1 < s.length) {
+      let nextValue = MAP[s[i + 1]];
 
       if (currentValue < nextValue) {
         sum += nextValue - currentValue;

@@ -4,6 +4,8 @@
  */
 
 const spiralMatrix = matrix => {
+  if (!matrix[0]) return [];
+
   const result = [];
 
   let startRow = 0;
@@ -26,6 +28,7 @@ const spiralMatrix = matrix => {
 
     // Last row
     for (let i = endColumn; i >= startColumn; i--) {
+      if (startColumn === endColumn) break;
       result.push(matrix[endRow][i]);
     }
     endRow--;
@@ -48,6 +51,8 @@ const spiralMatrix = matrix => {
 };
 
 // Test cases
+console.log(spiralMatrix([[2, 3]]));
+
 console.log(
   spiralMatrix([
     [1, 2, 3],
