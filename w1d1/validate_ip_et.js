@@ -16,18 +16,36 @@
 
 const neither = 'Neither';
 
-const isValidIPv4 = (IP) => {
+const isValidIPv4Segment = (segment) => {
+  return Number(segment) <= 255 &&
+    Number(segment) >= 0 &&
+    String(Number(segment)) === segment;
+};
 
+const isValidIPv4 = (IP) => {
+  const segments = IP.split('.');
+  return segments.length === 4 && segments.every(isValidIPv4Segment);
+};
+
+const isValidIPv6Segment = (segment) => {
+  return !/[^a-f0-9]/gi.test(segment) &&
+    segment.length <= 4 &&
+    segment.length > 0;
 };
 
 const isValidIPv6 = (IP) => {
-
+  const segments = IP.split(':');
+  return segments.length === 8 && segments.every(isValidIPv6Segment);
 };
 
 const validIPAddress = (IP) => {
-  if (IP.split('.').length === 4) return isValidIPv4(IP);
-  if (IP.split(':').length === 8) return isValidIPv6(IP);
-  return neither;
+  if (isValidIPv4(IP)) {
+    return 'IPv4';
+  } else if (isValidIPv6(IP)) {
+    return 'IPv6';
+  } else {
+    return 'Neither';
+  }
 };
 
 // Examples

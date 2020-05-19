@@ -9,33 +9,29 @@ const spiralOrder = matrix => {
   let maxJ = matrix[0].length - 1; // use first array based on assumption that m x n holds
   const numElements = (maxI + 1) * (maxJ + 1);
 
-  let i = 0;
-  let j = 0;
+  let i;
+  let j;
   let result = [];
-  while (minJ <= maxJ && minI <= maxI) {
 
+  while (minJ <= maxJ && minI <= maxI) {
     i = minI;
     j = minJ;
     for (j; j < maxJ; j++) {
-      console.log('first', i, j);
       result.push(matrix[i][j]);
       if (result.length === numElements) return result;
     }
 
     for (i; i < maxI; i++) {
-      console.log('second', i, j);
       result.push(matrix[i][j]);
       if (result.length === numElements) return result;
     }
 
     for (j; j > minJ; j--) {
-      console.log('third', i, j);
       result.push(matrix[i][j]);
       if (result.length === numElements) return result;
     }
 
     for (i; i > minI; i--) {
-      console.log('fourth', i, j);
       result.push(matrix[i][j]);
       if (result.length === numElements) return result;
     }
@@ -44,12 +40,32 @@ const spiralOrder = matrix => {
     minJ++;
     minI++;
   }
-  return result.concat(matrix[i][j]);
+  return result.concat(matrix[i][j]); // if minJ === maxJ && minI === maxI
 };
 
 // Examples
 
 console.log(
+  spiralOrder([
+    [1],
+  ]), // [1]
+  spiralOrder([
+    [1],
+    [2],
+    [3]
+  ]), // [1, 2, 3]
+  spiralOrder([
+    [1, 2],
+    [3, 4],
+    [5, 6]
+  ]), // [1, 2, 4, 6, 5, 3]
+  spiralOrder([
+    [1, 2, 3],
+  ]), // [1, 2, 3]
+  spiralOrder([
+    [1, 2, 3],
+    [4, 5, 6],
+  ]), // [1, 2, 3, 6, 5, 4]
   spiralOrder([
     [1, 2, 3],
     [4, 5, 6],
