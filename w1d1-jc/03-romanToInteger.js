@@ -14,10 +14,6 @@
  * Algorithm
  * - Instantiate a sum var
  * - Iterate over input string (roman numeral)
- * - If roman[i] === 'I'
- *   - if roman[i+1] === 'V', sum+=4, i+=2
- *   - if roman[i+1] === 'X', sum+=9, i+=2
- *   - else, sum+=1, i++
  * - If MAP[roman[i]] < MAP[roman[i+1]], sum += MAP[roman[i+1] - MAP[roman[i]], i += 2
  * - else, sum += MAP[roman[i]], i++
  *
@@ -40,21 +36,9 @@ const romanToInteger = roman => {
   let sum = 0;
 
   while (i < roman.length) {
-    // if (roman[i] === 'I') {
-    //   if (roman[i + 1] === 'V') {
-    //     sum += 4;
-    //     i += 2;
-    //   } else if (roman[i + 1] === 'X') {
-    //     sum += 9;
-    //     i += 2;
-    //   } else {
-    //     sum++;
-    //     i++;
-    //   }
     let currentValue = MAP[roman[i]];
 
     if (i + 1 < roman.length) {
-      // Look at both values
       let nextValue = MAP[roman[i + 1]];
 
       if (currentValue < nextValue) {
