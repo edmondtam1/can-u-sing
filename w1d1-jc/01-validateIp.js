@@ -67,14 +67,14 @@ const validateIp = ip => {
 
 // Test cases
 console.log(validateIp('2001:0db8:85a3:0:0:8A2E:0370:7334')); // "IPv6"
-// console.log(validateIp('172.16.254.1')); // "IPv4"
-// console.log(validateIp('172.1e.254.1')); // "Neither"
-// console.log(validateIp('256.16.254.1')); // "Neither"
-// console.log(validateIp('172.016.254.1')); // "Neither"
-// console.log(validateIp('2001:0db8:85a3:0:0:8A2E:0370:7334')); // "IPv6"
-// console.log(validateIp('20012:0db8:85a3:0:0:8A2E:0370:7334')); // "Neither"
-// console.log(validateIp('20012:0db8:85a3:0:0:8A2E::7334')); // "Neither"
-// console.log(validateIp('172.16')); // "Neither"
-// console.log(validateIp('172:16')); // "Neither"
-// console.log(validateIp('256.256.256.256')); // "Neither"
-// console.log(validateIp('172.16.254.01')); // "Neither" (leading 0)
+console.log(validateIp('172.16.254.1')); // "IPv4"
+console.log(validateIp('172.1e.254.1')); // "Neither"
+console.log(validateIp('256.16.254.1')); // "Neither"
+console.log(validateIp('172.016.254.1')); // "Neither"
+console.log(validateIp('2001:0db8:85a3:0:0:8A2E:0370:7334')); // "IPv6"
+console.log(validateIp('20012:0db8:85a3:0:0:8A2E:0370:7334')); // "Neither"
+console.log(validateIp('20012:0db8:85a3:0:0:8A2E::7334')); // "Neither"
+console.log(validateIp('172.16')); // "Neither"
+console.log(validateIp('172:16')); // "Neither"
+console.log(validateIp('256.256.256.256')); // "Neither"
+console.log(validateIp('172.16.254.01')); // "Neither" (leading 0)
