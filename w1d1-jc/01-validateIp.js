@@ -26,8 +26,9 @@ const validateIPv4 = ip => {
     const int = parseInt(el, 10);
     const hasNonIntegers = int.toString().length !== el.length;
     const greaterThan255 = int > 255;
+    const lessThan0 = int < 0;
     const hasLeadingZero = (el[0] = 0);
-    if (hasNonIntegers || greaterThan255 || hasLeadingZero) {
+    if (hasNonIntegers || greaterThan255 || hasLeadingZero || lessThan0) {
       return 'Neither';
     }
   }
@@ -36,12 +37,16 @@ const validateIPv4 = ip => {
 
 const validateIPv6 = ip => {
   const ipArr = ip.split(':');
+  const hexdigits = '0123456789abcdefABCDEF';
 
   for (let el of ipArr) {
     const hasGreaterThanFourDigits = el.length > 4;
     const hasEmptyEl = el === '';
+    const hasNonhexDigits = !el
+      .split('')
+      .every(val => hexdigits.split('').includes(val));
 
-    if (hasGreaterThanFourDigits || hasEmptyEl) {
+    if (hasGreaterThanFourDigits || hasEmptyEl || hasNonhexDigits) {
       return 'Neither';
     }
   }
@@ -53,6 +58,7 @@ const validateIp = ip => {
   if (ip.split('.').length === 4) {
     return validateIPv4(ip);
   } else if (ip.split(':').length === 8) {
+    console.log('go to v6');
     return validateIPv6(ip);
   } else {
     return 'Neither';
@@ -60,6 +66,7 @@ const validateIp = ip => {
 };
 
 // Test cases
+console.log(validateIp('2001:0db8:85a3:0:0:8A2E:0370:7334')); // "IPv6"
 console.log(validateIp('172.16.254.1')); // "IPv4"
 console.log(validateIp('172.1e.254.1')); // "Neither"
 console.log(validateIp('256.16.254.1')); // "Neither"
