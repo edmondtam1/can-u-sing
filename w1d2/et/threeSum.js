@@ -34,7 +34,7 @@
 // const threeSum = arr => {
 //   const result = [];
 //   arr = arr.sort((a, b) => a - b);
-// 
+
 //   for (let i = 0; i < arr.length - 2; i++) {
 //     let start = i + 1;
 //     let end = arr.length - 1;
@@ -99,7 +99,6 @@ console.log(
   // ]
   threeSum([-5, 3, -2, 4, -2, 7]),
   //[
-  //  [-5, -2, 7]
   //  [-5, -2, 7]
   //  [-2, 4, -2]
   //]
