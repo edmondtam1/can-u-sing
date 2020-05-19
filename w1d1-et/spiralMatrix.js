@@ -3,6 +3,7 @@
 // Given a matrix of m x n elements (m rows, n columns), return all elements of the matrix in spiral order.
 
 const spiralOrder = matrix => {
+  if (matrix.length === 0) return [];
   let minI = 0;
   let minJ = 0;
   let maxI = matrix.length - 1; // only including the relevant max pointer
