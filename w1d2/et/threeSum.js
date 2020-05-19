@@ -19,7 +19,7 @@
 //           for (let l = 0; l < result.length; l++) {
 //             if (result[l][0] === temp[0] && result[l][1] === temp[1] && result[l][2] === temp[2]) {
 //               push = false;
-//               break
+//               break;
 //             }
 //           }
 //           if (push) result.push(temp);
@@ -67,8 +67,28 @@ const threeSum = arr => {
   const complements = {};
 
   for (let i = 0; i < arr.length; i++) {
-
+    complements[arr[i]] = i;
   }
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      const sum = arr[i] + arr[j];
+      if (complements[-sum] && complements[-sum] !== i && complements[-sum] !== j) {
+        const temp = [-sum, arr[i], arr[j]];
+        let push = true;
+        temp.sort((a, b) => a - b);
+        for (let l = 0; l < result.length; l++) {
+          if (result[l][0] === temp[0] && result[l][1] === temp[1] && result[l][2] === temp[2]) {
+            push = false;
+            break;
+          }
+        }
+        if (push) result.push(temp);
+      }
+    }
+  }
+
+  return result;
 };
 
 console.log(
