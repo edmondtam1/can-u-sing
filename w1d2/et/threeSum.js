@@ -31,22 +31,52 @@
 // };
 
 // 3 pointers, sorted- O(N^2) time and O(N) space using outer loop and inner loop with 2 pointers
+const threeSum = arr => {
+  const result = [];
+  const uniques = new Set();
+  arr = arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i !== 0 && arr[i] === arr[i - 1]) continue;
+
+    let start = i + 1;
+    let end = arr.length - 1;
+    while (start < end) {
+      const val = arr[i];
+      if (-val > arr[start] + arr[end]) {
+        start++;
+      } else if (-val < arr[start] + arr[end]) {
+        end--;
+      } else {
+        const temp = [arr[i], arr[start], arr[end]];
+        const signature = `${arr[i]}-${arr[start]}-${arr[end]}`;
+        if (!uniques.has(signature)) {
+          uniques.add(signature);
+          result.push(temp);
+        }
+        start++;
+      }
+    }
+  }
+  return result;
+};
+
+// Memoized version without sorting - O(N^2) time and O(N) space
 // const threeSum = arr => {
 //   const result = [];
-//   arr = arr.sort((a, b) => a - b);
+//   const complements = {};
 
-//   for (let i = 0; i < arr.length - 2; i++) {
-//     let start = i + 1;
-//     let end = arr.length - 1;
-//     while (start < end) {
-//       const val = arr[i];
-//       if (-val > arr[start] + arr[end]) {
-//         start++;
-//       } else if (-val < arr[start] + arr[end]) {
-//         end--;
-//       } else {
-//         const temp = [arr[i], arr[start], arr[end]];
+//   for (let i = 0; i < arr.length; i++) {
+//     complements[arr[i]] = i;
+//   }
+
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     for (let j = i + 1; j < arr.length; j++) {
+//       const sum = -(arr[i] + arr[j]);
+//       if (complements[sum] && complements[sum] !== i && complements[sum] !== j) {
+//         const temp = [sum, arr[i], arr[j]];
 //         let push = true;
+//         temp.sort((a, b) => a - b);
 //         for (let l = 0; l < result.length; l++) {
 //           if (result[l][0] === temp[0] && result[l][1] === temp[1] && result[l][2] === temp[2]) {
 //             push = false;
@@ -54,47 +84,18 @@
 //           }
 //         }
 //         if (push) result.push(temp);
-//         start++;
 //       }
 //     }
 //   }
+
 //   return result;
 // };
 
-// Memoized version without sorting - O(N^2) time and O(N) space
-const threeSum = arr => {
-  const result = [];
-  const complements = {};
-
-  for (let i = 0; i < arr.length; i++) {
-    complements[arr[i]] = i;
-  }
-
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      const sum = arr[i] + arr[j];
-      if (complements[-sum] && complements[-sum] !== i && complements[-sum] !== j) {
-        const temp = [-sum, arr[i], arr[j]];
-        let push = true;
-        temp.sort((a, b) => a - b);
-        for (let l = 0; l < result.length; l++) {
-          if (result[l][0] === temp[0] && result[l][1] === temp[1] && result[l][2] === temp[2]) {
-            push = false;
-            break;
-          }
-        }
-        if (push) result.push(temp);
-      }
-    }
-  }
-
-  return result;
-};
-
 console.log(
   threeSum([-1, 0, 1, 2, -1, -4]),
+  // threeSum([-4, -1, -1, 0, 1, 2]),
   //[
-  //   [-1, 0, 1],
+  //   [-1, 0, 1], // no [-1, 0, 1] duplicate
   //   [-1, -1, 2]
   // ]
   threeSum([-5, 3, -2, 4, -2, 7]),
