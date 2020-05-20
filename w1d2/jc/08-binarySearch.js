@@ -9,14 +9,17 @@ const binarySearch = (arr, num) => {
   let mid;
 
   while (left <= right) {
+    // mid = left + (right - left) / 2; // To minimize overflow
     mid = Math.floor((right + left) / 2);
 
     if (arr[mid] === num) {
       return mid;
     } else if (num < arr[mid]) {
       right = mid - 1;
+      // right = mid;
     } else {
       left = mid + 1;
+      // left = mid;
     }
   }
 

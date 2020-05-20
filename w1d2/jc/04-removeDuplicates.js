@@ -21,9 +21,11 @@
  * [0,1,2,3,4,2,2,3,3,4]
  *          w
  *                    r
+ * 
+ * [0,1,2,3,4,2,2,3,3,4]
  */
 
-const removeDuplicates = (nums) => {
+const removeDuplicates = nums => {
   let w = 0;
   let r = 1;
 

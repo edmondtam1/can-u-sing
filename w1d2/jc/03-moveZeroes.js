@@ -18,7 +18,7 @@
  *            r
  */
 
-const moveZeroes = (nums) => {
+const moveZeroes = nums => {
   let w = 0;
   let r = 1;
 
