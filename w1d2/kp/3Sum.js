@@ -28,16 +28,13 @@ ALGORITHM:
 
 var threeSum = function(nums) {
   const result = [];
-  const duplicates = {};
   const sorted = nums.sort((a, b) => a - b);
 
   for (let i = 0; i <= sorted.length - 3; i+=1) {
-    if (duplicates[i] === true) { continue; }
-    duplicates[i] = true;
     let j = i + 1;
     let k = sorted.length - 1
     let target = 0 - sorted[i];
-
+    
     while (j < k) {
       if (sorted[j] + sorted[k] === target) {
         result.push([sorted[i], sorted[j], sorted[k]]);
@@ -49,7 +46,6 @@ var threeSum = function(nums) {
       }
     }
   }
-  console.log(duplicates);
   return result;
 }
 
