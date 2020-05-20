@@ -30,13 +30,14 @@
  * - If exists, push the 3 indexes to result array
  */
 
-const threeSum = nums => {
+const threeSum = (nums) => {
   const result = [];
   nums.sort((a, b) => a - b);
 
   for (let i = 0; i < nums.length - 2; i++) {
     let start = i + 1;
     let end = nums.length - 1;
+
     if (i !== 0 && nums[i] === nums[i - 1]) continue;
 
     while (start < end) {

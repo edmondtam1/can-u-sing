@@ -18,12 +18,11 @@
  *            r
  */
 
-const moveZeroes = nums => {
+const moveZeroes = (nums) => {
   let w = 0;
   let r = 1;
 
   while (r < nums.length) {
-    console.log(w, r);
     if (nums[r] !== 0) {
       nums[w] = nums[r];
       w++;
