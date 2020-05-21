@@ -20,7 +20,14 @@
  *    [1, 2, 1] 3 [5, 6, 4] arr[mid] > arr[mid-1]
  */
 
-const findPeakElements = (nums) => {
+/**
+ * Notes from Tannr
+ * - Follow the ascending line because it MUST eventually reach a peak (even if its the end)
+ * - ex. [1,2,3,4] you will always end up at 4
+ * - this ONLY works if
+ */
+
+const findPeakElements = nums => {
   let left = 0;
   let right = nums.length - 1;
 
