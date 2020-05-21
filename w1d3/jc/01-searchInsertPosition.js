@@ -14,36 +14,37 @@
  *
  * Algo
  * - O(N)
- *   - Iterate over array, if el === target, return index, if el > target, return index - 1
+ *   - Iterate over array, if el => target, return index
  *
  * - O(log N)
  *   - Binary search
  *   - when length === 1, return index or index-- or index++
  */
 
-const searchInsert = (arr, num) => {
+const searchInsert = (nums, target) => {
   let left = 0;
-  let right = arr.length - 1;
+  let right = nums.length - 1;
   let mid;
+
+  if (target === 0) return 0;
 
   while (left <= right) {
     mid = Math.floor((right + left) / 2);
 
-    if (arr[mid] === num) {
+    if (nums[mid] === target) {
       return mid;
-    } else if (num < arr[mid]) {
+    } else if (target < nums[mid]) {
       right = mid - 1;
-      // right = mid;
     } else {
       left = mid + 1;
-      // left = mid;
     }
   }
 
-  return mid > num ? mid - 1 : mid + 1;
+  return target > nums[mid] ? mid + 1 : mid;
 };
 
-console.log(searchInsert([1, 3, 5, 6], 5)); // 2
+console.log(searchInsert([1, 3], 2)); // 1
 console.log(searchInsert([1, 3, 5, 6], 2)); // 1
+console.log(searchInsert([1, 3, 5, 6], 5)); // 2
 console.log(searchInsert([1, 3, 5, 6], 7)); // 4
 console.log(searchInsert([1, 3, 5, 6], 0)); // 0
