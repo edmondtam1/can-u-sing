@@ -14,7 +14,7 @@
  *
  * Algo
  * - O(N)
- *   - Iterate over array, if el === target, return index, if el > target, return index - 1
+ *   - Iterate over array, if el => target, return index
  *
  * - O(log N)
  *   - Binary search
