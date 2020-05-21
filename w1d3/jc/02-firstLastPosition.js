@@ -7,70 +7,59 @@
  * - Runtime must be O(log n)
  *
  * Algo
- * - Binary search to find the element
- *   - If it doesn't exist, return [-1, -1]
- *   - If it does, binary search the left side to find the leftmost idx and right side to find the rightmost idx
+ * - Binary search to find the leftmost element
+ * - Binary search to find the rightmost element
+ *
+ * [5,7,7,7,7,8,9], 7
+ * [5,7,7] 7 [7,8,9]
+ *
+ *
+ *
  */
 
 const searchRange = (nums, target) => {
   let left = 0;
   let right = nums.length - 1;
-  let mid;
+  let firstIndex = -1;
+  let lastIndex = -1;
 
+  // Find the first index of target value
   while (left <= right) {
-    mid = Math.floor((right + left) / 2);
+    let mid = Math.floor(left + (right - left) / 2);
 
-    // When we find the target
-    if (nums[mid] === target) {
-      // Search the left for the first instance of the target and the right for the last
-      return [
-        searchLeft(nums, 0, mid, target),
-        searchRight(nums, mid, nums.length, target),
-      ];
-    } else if (target <= nums[mid]) {
+    if (nums[mid] > target) {
       right = mid - 1;
-    } else {
-      left = mid + 1;
-    }
-  }
-
-  // If target doesn't exist in nums
-  return [-1, -1];
-};
-
-const searchLeft = (nums, left, right, target) => {
-  while (left < right) {
-    mid = Math.floor((right + left) / 2);
-
-    // If number to left is not the same, we found the left boundary
-    if (nums[mid - 1] < target) {
-      return mid;
     } else if (nums[mid] < target) {
       left = mid + 1;
     } else {
+      // Set the first index but keep going
+      firstIndex = mid;
       right = mid - 1;
     }
   }
 
-  return left;
-};
+  // Reset pointers
+  left = firstIndex;
+  right = nums.length - 1;
 
-const searchRight = (nums, left, right, target) => {
-  while (left < right) {
-    mid = Math.floor((right + left) / 2);
+  // Find the last index of target value
+  while (left <= right) {
+    let mid = Math.floor(left + (right - left) / 2);
 
-    // If number to right is not the same, we found the right boundary
-    if (nums[mid + 1] > target) {
-      return mid;
-    } else if (nums[mid] > target) {
+    if (nums[mid] > target) {
       right = mid - 1;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
     } else {
+      // Set the first index but keep going
+      lastIndex = mid;
       left = mid + 1;
     }
   }
 
-  return right;
+  return [firstIndex, lastIndex];
 };
 
+console.log(searchRange([5, 7, 7, 8, 8, 8, 8, 10], 8)); // [3,6]
 console.log(searchRange([5, 7, 7, 8, 8, 10], 8)); // [3,4]
 console.log(searchRange([5, 7, 7, 8, 8, 10], 6)); // [-1,-1]
