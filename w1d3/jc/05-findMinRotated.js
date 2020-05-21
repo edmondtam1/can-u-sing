@@ -16,7 +16,14 @@
  *
  */
 
-const findMin = (nums) => {
+/**
+ * Disucssion
+ * - If the number to the right of mid is < mid, that must be the minimum, so return it
+ * - If the number to the left of mid is > mid, mid must be the minimum
+ * -
+ */
+
+const findMin = nums => {
   let start = 0;
   let end = nums.length - 1;
 

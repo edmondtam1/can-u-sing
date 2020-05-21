@@ -12,7 +12,15 @@
  * - Otherwise, return false
  */
 
-const validPerfectSquare = (num) => {
+/**
+ * Group discussion
+ * - Is this actually constant time since there's an upper bound of perfect squares we're looking for (46340)?
+ *   - Technically, O(log N) for N <= 46340, then O(1)
+ *   - But, technically there's always an upper bound (something short of infinity)
+ *   - so, here its still O(log N)
+ */
+
+const validPerfectSquare = num => {
   let start = 1;
   let end = num;
 
