@@ -10,7 +10,10 @@
 
 // algo
 // binary search: choose element if left > element and right > element (basically trough of the array)
-// left/right condition: compare to arbitary element (nums[0])
+// left/right condition: find whether mid is in "first" or "second" array
+// - check whether left is greater than mid + 1
+//    - if greater than mid + 1, then we're in "second" array => go left
+//    - if less than mid + 1, then we're in "first" array => go right
 
 const isTrough = (array, index) => {
   let before = index === 0 ? array.length - 1 : index - 1;

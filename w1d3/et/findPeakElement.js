@@ -18,7 +18,10 @@
 
 // algo
 // need a method to choose whether to go left or right
-// 
+// note that if you go towards a point with a higher value, you're definitely going to get a peak
+// therefore, if both are ascending, choose either
+// otherwise choose the ascending segment
+// else this is a peak
 
 // binary search
 const isPeak = (nums, i) => {
