@@ -43,8 +43,6 @@ const searchInsert = (nums, target) => {
   return target > nums[mid] ? mid + 1 : mid;
 };
 
-// [1,3] mid = 0, left = 1, right = 1
-
 console.log(searchInsert([1, 3], 2)); // 1
 console.log(searchInsert([1, 3, 5, 6], 2)); // 1
 console.log(searchInsert([1, 3, 5, 6], 5)); // 2
