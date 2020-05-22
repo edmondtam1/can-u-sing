@@ -29,21 +29,32 @@
 
 const deleteDuplicates = head => {
   if (!head) return null;
-  let root = new ListNode(-1, head);
+  let root = new ListNode(-1, null);
   let anchor = root;
-  let runner = root.next;
-  let tester = root.next.next;
+  let runner = head;
+  let tester = head.next;
   let hasDuplicate = false;
 
-  while (tester) {
-    while (runner.val === tester.val) {
+  while (runner) {
+    if (!tester) {
+      if (!hasDuplicate) {
+        anchor.next = runner;
+      }
+      break;
+    }
+
+    while (tester && runner.val === tester.val) {
       hasDuplicate = true;
       tester = tester.next;
     }
     if (hasDuplicate) {
       hasDuplicate = false;
       runner = tester;
-      tester = runner.next;
+      if (runner) {
+        tester = runner.next;
+      } else {
+        anchor.next = runner;
+      }
     } else {
       anchor.next = runner;
       anchor = runner;
@@ -51,9 +62,8 @@ const deleteDuplicates = head => {
       tester = runner.next;
     }
   }
-  console.log(root.next.next.next);
 
-  return root.next;
+  return root.next ? root.next : root;
 };
 
 // test cases
@@ -77,7 +87,7 @@ const testLinkedListsAreEqual = (expected, output) => {
 };
 
 const createLinkedList = array => {
-  if (array.length === 0) return new ListNode(0);
+  if (array.length === 0) return new ListNode(-1, null);
   let next = null;
 
   for (let i = array.length - 1; i >= 0; i--) {
@@ -95,7 +105,17 @@ const ll2 = createLinkedList([1, 1, 1, 2, 3]);
 const ll2output = deleteDuplicates(ll2)
 const ll2ans = createLinkedList([2, 3]);
 
+const ll3 = createLinkedList([1]);
+const ll3output = deleteDuplicates(ll3)
+const ll3ans = createLinkedList([1]);
+
+const ll4 = createLinkedList([1, 1]);
+const ll4output = deleteDuplicates(ll4)
+const ll4ans = createLinkedList([]);
+
 console.log(
   testLinkedListsAreEqual(ll1ans, ll1output),
   testLinkedListsAreEqual(ll2ans, ll2output),
+  testLinkedListsAreEqual(ll3ans, ll3output),
+  testLinkedListsAreEqual(ll4ans, ll4output),
 );
