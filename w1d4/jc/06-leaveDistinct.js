@@ -48,8 +48,9 @@ class ListNode {
 const leaveDistinct = head => {
   if (!head) return null;
 
+  let dummy = new ListNode(null, head);
   let c = head;
-  let p = null;
+  let p = dummy;
 
   while (c && c.next !== null) {
     if (c.next.val === c.val) {
@@ -68,7 +69,7 @@ const leaveDistinct = head => {
       c = c.next;
     }
   }
-  return head;
+  return dummy.next;
 };
 
 /**
