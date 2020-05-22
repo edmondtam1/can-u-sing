@@ -23,8 +23,8 @@ function mergeSort(arr) {
   if (arr.length === 1) return arr;
 
   let mid = Math.floor(arr.length / 2) - 1;
-  let leftSorted = mergeSort(arr.slice(0, mid+1));
-  let rightSorted = mergeSort(arr.slice(mid+1, arr.length));
+  let leftSorted = mergeSort(arr.slice(0, mid + 1));
+  let rightSorted = mergeSort(arr.slice(mid + 1, arr.length));
 
   return merge(leftSorted, rightSorted);
 }
@@ -33,7 +33,6 @@ function merge(left, right) {
   let sorted = [];
 
   while (left.length && right.length) {
-    console.log(left, right);
     if (left[0] < right[0]) {
       sorted.push(left.shift());
     } else {
@@ -44,5 +43,4 @@ function merge(left, right) {
   return [...sorted, ...left, ...right];
 }
 
-let a = [5, 2, 7, -1, 2]  //==> [-1, 2, 2, 5, 7]
-console.log(mergeSort(a));
+let a = [5, 2, 7, -1, 2] //==> [-1, 2, 2, 5, 7]
