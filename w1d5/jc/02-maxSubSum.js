@@ -49,7 +49,7 @@ const maxCrossingSum = (arr, l, m, h) => {
   return Math.max(leftSum + rightSum, Math.max(leftSum, rightSum));
 };
 
-const maxSubArraySum = (arr, l, h) => {
+const maxSubArraySum = (arr, l = 0, h = arr.length - 1) => {
   // If only 1 element, return it
   if (l === h) {
     return arr[l];
@@ -67,4 +67,10 @@ const maxSubArraySum = (arr, l, h) => {
   const maxCrossing = maxCrossingSum(arr, l, m, h);
 
   return Math.max(maxLeft, maxRight, maxCrossing);
+
+  // [1, -3, 4]
+  // [1] [-3, 4]
+  //     [-3], [4]
 };
+
+console.log(maxSubArraySum([1, -3, 4, 5]));

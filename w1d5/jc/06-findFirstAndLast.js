@@ -6,13 +6,19 @@ If not found, return [-1,-1]
 - If not found, return [-1, -1]
 - Find the right target using recursive bs, starting left at left target
 - return [leftTarget, rightTarget]
+
+  // [5,7,7,8,8,10]
+  // [8,8,10]
+  // [8]
+
 */
 
 const searchRange = (nums, target) => {
   const getLeft = (nums, target, left, right) => {
-    let mid = Math.floor(left + (right - left) / 2);
+    if (left >= right && nums[left] === target) return left;
+    if (left > right) return -1;
 
-    if (left > right) return left;
+    let mid = Math.floor(left + (right - left) / 2);
 
     if (nums[mid] > target || nums[mid] === target) {
       return getLeft(nums, target, left, mid - 1);
@@ -22,14 +28,17 @@ const searchRange = (nums, target) => {
   };
 
   const getRight = (nums, target, left, right) => {
+    if (left >= right && nums[right] === target) return right;
+    if (left > right) return -1;
+
     let mid = Math.floor(left + (right - left) / 2);
 
-    if (left > right) return right;
-
-    if (nums[mid] < target || nums[mid] === target) {
-      return getRight(nums, target, mid + 1, right);
-    } else {
+    if (nums[mid] > target) {
       return getRight(nums, target, left, mid - 1);
+    } else if (nums[mid + 1] !== target) {
+      return mid;
+    } else {
+      return getRight(nums, target, mid + 1, right);
     }
   };
 
@@ -43,3 +52,6 @@ const searchRange = (nums, target) => {
 };
 
 console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
+console.log(searchRange([5, 7, 7, 8, 8, 10], 6));
+console.log(searchRange([2, 2], 2));
+console.log(searchRange([5, 7, 7, 8, 8, 10], 6));
