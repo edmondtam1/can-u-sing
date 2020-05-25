@@ -8,6 +8,14 @@
 // three pointers: p = null, c = head, n (not set)
 // two anchors: start and end (???)
 // one index / tracker - note list is one-based
+
+// 1->2<-3<-4->5->6, 2, 4
+// s  e
+//       p  c  n
+// s------->
+//    e------->
+// 1->4->3->2->5->6
+
 // traverse the list:
 //   while index < m
 //     p = c

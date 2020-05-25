@@ -27,43 +27,67 @@
 //   tester = runner.next
 //  
 
+// 3 pointers
+// const deleteDuplicates = head => {
+//   if (!head) return null;
+//   let root = new ListNode(-1, null);
+//   let anchor = root;
+//   let runner = head;
+//   let tester = head.next;
+//   let hasDuplicate = false;
+
+//   while (runner) {
+//     if (!tester) {
+//       if (!hasDuplicate) {
+//         anchor.next = runner;
+//       }
+//       break;
+//     }
+
+//     while (tester && runner.val === tester.val) {
+//       hasDuplicate = true;
+//       tester = tester.next;
+//     }
+//     if (hasDuplicate) {
+//       hasDuplicate = false;
+//       runner = tester;
+//       if (runner) {
+//         tester = runner.next;
+//       } else {
+//         anchor.next = runner;
+//       }
+//     } else {
+//       anchor.next = runner;
+//       anchor = runner;
+//       runner = anchor.next;
+//       tester = runner.next;
+//     }
+//   }
+
+//   return root.next ? root.next : null;
+// };
+
+// 2 pointers
 const deleteDuplicates = head => {
-  if (!head) return null;
-  let root = new ListNode(-1, null);
-  let anchor = root;
-  let runner = head;
-  let tester = head.next;
-  let hasDuplicate = false;
-
-  while (runner) {
-    if (!tester) {
-      if (!hasDuplicate) {
-        anchor.next = runner;
-      }
-      break;
+  if (!head) return head;
+  const root = new ListNode(NaN, head);
+  let prev = root;
+  let curr = head;
+  let dup = false;
+  while (curr && curr.next) {
+    if (curr.next.val === curr.val) dup = true;
+    while (curr.next && curr.next.val === curr.val) {
+      curr = curr.next;
     }
-
-    while (tester && runner.val === tester.val) {
-      hasDuplicate = true;
-      tester = tester.next;
-    }
-    if (hasDuplicate) {
-      hasDuplicate = false;
-      runner = tester;
-      if (runner) {
-        tester = runner.next;
-      } else {
-        anchor.next = runner;
-      }
+    curr = curr.next; // has now come to a non-dup value
+    if (dup) {
+      prev.next = curr;
     } else {
-      anchor.next = runner;
-      anchor = runner;
-      runner = anchor.next;
-      tester = runner.next;
+      prev = prev.next;
     }
+    dup = false;
   }
-
-  return root.next ? root.next : root;
+  return root.next;
 };
 
 // test cases
@@ -109,13 +133,13 @@ const ll3 = createLinkedList([1]);
 const ll3output = deleteDuplicates(ll3)
 const ll3ans = createLinkedList([1]);
 
-const ll4 = createLinkedList([1, 1]);
-const ll4output = deleteDuplicates(ll4)
-const ll4ans = createLinkedList([]);
+// const ll4 = createLinkedList([1, 1]);
+// const ll4output = deleteDuplicates(ll4)
+// const ll4ans = createLinkedList(null);
 
 console.log(
   testLinkedListsAreEqual(ll1ans, ll1output),
   testLinkedListsAreEqual(ll2ans, ll2output),
   testLinkedListsAreEqual(ll3ans, ll3output),
-  testLinkedListsAreEqual(ll4ans, ll4output),
+  // ll4ans === null,
 );
