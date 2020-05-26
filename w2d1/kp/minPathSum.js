@@ -18,11 +18,10 @@ use hash to store overlapping solutions
 -----------ALGORITHM-----------------
 1. initialize empty arr that will keep track of minimum cost to each square
 2. the cost of the top left most square is the value itself
-3. the cost of the top left most square is the value itself
-4. fill in the minimum cost of all squares in the first row which is just the cost of the current square plus the left square
-5. fill in the minimum cost of all squares in the first column which is just the cost of the current square plus the top square
-6. start filling the remaining squares with the minimum cost to the path. Either current + top or current + left
-7. return last element of last row
+3. fill in the minimum cost of all squares in the first row which is just the cost of the current square plus the left square
+4. fill in the minimum cost of all squares in the first column which is just the cost of the current square plus the top square
+5. start filling the remaining squares with the minimum cost to the path. Either current + top or current + left
+6. return last element of last row
 
                    [  1     3     1  ]
                    [  1     5     1  ]
