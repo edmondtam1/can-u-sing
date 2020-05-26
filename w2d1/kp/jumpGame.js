@@ -16,13 +16,30 @@ console.log(canJump([2,3,1,1,4]) === true)
 console.log(canJump([3,2,1,0,4]) === false)
 
 --------------ALGORITHM----------------
-
+1. initialize memo to {}
+2. at each index set memo[index] to true if the value allows a jump to the last index
+3. define a helper function jumpHelper that can determine if a position is a good index
 */
 
 var canJump = function(nums) {
-  if (nums.length <= 1) return true;
+  let memo = {};
+  memo[nums.length - 1] = true;
+  return jumpHelper(nums, 0, memo);
+}
 
+function jumpHelper(nums, curr, memo) {
+  if (memo[curr]) return !!memo[curr];
 
+  let maxJump = Math.min(curr + nums[curr], nums.length - 1);
+  for (let next = curr + 1; next <= maxJump; next++) {
+    if (jumpHelper(nums, next, memo)) {
+      memo[curr] = true;
+      return true;
+    }
+  }
+
+  memo[curr] = false;
+  return memo[curr];
 }
 
 
