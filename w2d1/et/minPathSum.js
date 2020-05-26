@@ -26,26 +26,22 @@ const minPathSum = grid => {
 };
 
 const minPathHelper = (grid, row, col, cache) => {
-  const key = `${row}|${col}`;
-
   if (row === grid.length - 1 && col === grid[0].length - 1) {
-    cache[key] = grid[row][col];
+    cache[[row, col]] = grid[row][col];
     return grid[row][col];
   } else if (row === grid.length - 1) {
-    const val = minPathHelper(grid, row, col + 1, cache);
-    cache[`${row}|${col + 1}`] = val;
-    return grid[row][col] + val;
+    return grid[row][col] + minPathHelper(grid, row, col + 1, cache);
   } else if (col === grid[0].length - 1) {
-    const val = minPathHelper(grid, row + 1, col, cache);
-    cache[`${row + 1}|${col}`] = val;
-    return grid[row][col] + val;
+    return grid[row][col] + minPathHelper(grid, row + 1, col, cache);
   }
 
-  let nextRow = cache[`${row + 1}|${col}`] || minPathHelper(grid, row + 1, col, cache);
-  let nextCol = cache[`${row}|${col + 1}`] || minPathHelper(grid, row, col + 1, cache);
+  if (!cache[[row, col]]) {
+    let nextRow = cache[[row + 1, col]] || minPathHelper(grid, row + 1, col, cache);
+    let nextCol = cache[[row, col + 1]] || minPathHelper(grid, row, col + 1, cache);
 
-  cache[key] = Math.min(nextRow, nextCol) + grid[row][col];
-  return cache[key];
+    cache[[row, col]] = Math.min(nextRow, nextCol) + grid[row][col]; // only do cache assignment here, and at basest base case
+  }
+  return cache[[row, col]];
 };
 
 const grid1 = [
