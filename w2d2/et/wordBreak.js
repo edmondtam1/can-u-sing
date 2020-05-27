@@ -20,26 +20,27 @@
 // move index all the way to the end
 // problematic with some tests on leetcode: different words in wordDict could be used to get answer
 // below recursive code doesn't work: need some check that all breadths have been analysed, but here it returns the depth-first answer
-// const wordBreak = (s, wordDict) => {
-//   let uniques = new Set();
 
-//   const helper = (start) => {
-//     for (let end = start + 1; end <= s.length; end++) {
-//       const subString = s.slice(start, end);
-//       if (wordDict.includes(subString)) {
-//         console.log(subString, end);
-//         if (end >= s.length) return true;
-//         if (!uniques.has(end)) {
-//           uniques.add(end);
-//           return helper(end);
-//         }
-//       }
-//     }
-//     return false;
-//   };
+// for each word, check if subString is a word && helper(subString) is a word
+const wordBreak = (s, wordDict) => {
+  return helper(s, wordDict, 0, {});
+};
 
-//   return helper(0);
-// };
+const helper = (s, wordDict, start, memo) => {
+  if (start >= s.length) return true;
+  for (let end = start + 1; end <= s.length; end++) {
+    if (!memo[[start, end]]) {
+      const subString = s.slice(start, end);
+      if (wordDict.includes(subString) && helper(s, wordDict, end, memo)) {
+        memo[[start, end]] = true;
+        return true;
+      } else {
+        memo[[start, end]] = false;
+      }
+    }
+  }
+  return false;
+};
 
 // bottom up programming with queue - can convert this logic
 const wordBreakV2 = (s, wordDict) => {
