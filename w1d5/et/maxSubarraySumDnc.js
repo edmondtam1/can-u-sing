@@ -50,7 +50,7 @@ const maxCrossingArray = (nums, start, mid, end) => {
   return left + right;
 };
 
-console.log(maxCrossingArray([1, -3, 4, 2, 7, -3, -5], 0, 3, 6));
-console.log(maxCrossingArray([1, 5, 4, -1, -3, -3, -5], 0, 3, 6));
+console.log(maxCrossingArray([1, -3, 4, 2, 7, -3, -5], 0, 3, 6)); // 13
+console.log(maxCrossingArray([1, 5, 4, -1, -3, -3, -5], 0, 3, 6)); // 10 (returns 6 because it doesn't go through mid)
 console.log(maxSubArray([1, -3, 4, 2, 7, -3, -5]));
 console.log(maxSubArray([-1, -3, -4, -2, -7, -3, -5]));
