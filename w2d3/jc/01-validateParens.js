@@ -17,7 +17,7 @@ const isValid = s => {
   };
 
   for (char of sArr) {
-    if (char === '{' || char === '[' || char === '(') {
+    if (Object.values(charMap).includes(char)) {
       stack.push(char);
     } else {
       if (stack.read() === charMap[char]) {
