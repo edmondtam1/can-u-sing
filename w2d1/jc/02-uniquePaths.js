@@ -36,19 +36,24 @@ console.log(uniquePathsTD(3, 2));
 
 /**
  * Bottom Up
- * - Start from the end
- *   - If there's one move left, return 1
  * - Instantiate an object with the keys and values we already know
- *   - dp[[1,n]] = 1;
- *   - dp[[m, 1]] = 1;
- * - Iterate from end to beginning, at each iteration, iterating over possible moves
+ *   - dp[[1,0]] = 1;
+ *   - dp[[0, 1]] = 1;
+ * - Iterate beginning to end, at each iteration, iterating over possible moves
  * - Return dp[[m,n]]
  */
 const uniquePathsBU = (m, n) => {
   const dp = {};
+  dp[[0, 0]] = 1;
 
-  while (m >= 0) {
-    while (n >= 0) {}
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (!dp[[i, j]]) {
+        dp[[i, j]] = dp[[i - 1, j]] + dp[[i, j - 1]];
+      }
+    }
   }
+  console.log(dp);
+  return dp[[m, n]];
 };
 console.log(uniquePathsBU(3, 2));

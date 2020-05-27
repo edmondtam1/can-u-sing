@@ -7,6 +7,9 @@
  * - add the greater of m-1 or n-1
  */
 
+/**
+ * No Memoization
+ */
 const minPathSum = grid => {
   const rows = grid.length - 1;
   const columns = grid[0].length - 1;
@@ -31,6 +34,9 @@ const minPathSum = grid => {
   return helper(grid, 0, 0);
 };
 
+/**
+ * With Memoization
+ */
 const minPathSumMemo = grid => {
   const rows = grid.length - 1;
   const columns = grid[0].length - 1;
