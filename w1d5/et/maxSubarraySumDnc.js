@@ -29,17 +29,6 @@ const maxSubArray = (nums, start = 0, end = nums.length - 1) => {
     maxRight,
     maxCrossing,
   );
-
-  // # divide
-  // left = left_half(list)
-  // right = right_half(list)
-
-  // # conquer (recurse)
-  // left_result = dnc_problem(left)
-  // right_result = dnc_problem(right)
-
-  // # combine; very different for every problem
-  // return combine(left_result, right_result) 
 };
 
 const maxCrossingArray = (nums, start, mid, end) => {
@@ -61,6 +50,7 @@ const maxCrossingArray = (nums, start, mid, end) => {
   return left + right;
 };
 
-console.log(maxCrossingArray([1, -3, 4, 2, 7, -3, -5], 0));
+console.log(maxCrossingArray([1, -3, 4, 2, 7, -3, -5], 0, 3, 6));
+console.log(maxCrossingArray([1, 5, 4, -1, -3, -3, -5], 0, 3, 6));
 console.log(maxSubArray([1, -3, 4, 2, 7, -3, -5]));
 console.log(maxSubArray([-1, -3, -4, -2, -7, -3, -5]));
