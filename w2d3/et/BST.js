@@ -1,12 +1,5 @@
 const Queue = require('./Queue');
-
-class TreeNode {
-  constructor(val, left, right) {
-    this.val = (val === undefined ? 0 : val)
-    this.left = (left === undefined ? null : left)
-    this.right = (right === undefined ? null : right)
-  }
-}
+const TreeNode = require('./TreeNode');
 
 class BST {
   constructor(values = []) {
@@ -15,7 +8,7 @@ class BST {
 
   populateTree = values => {
     if (values.length === 0) {
-      this.root = null;
+      this.root = this.root || null;
       return this.root;
     }
 
