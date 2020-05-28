@@ -65,6 +65,12 @@ Use memoization to cache the results
 //   return memo[[row, column]];
 // }
 
+        [2]         [ ]
+       [3,4]       [ , ]
+      [6,5,7]     [ , , ]
+     [4,1,8,3]   [ , , , ]
+
+
 var minimumTotal = function(triangle) {
   for (let row = triangle.length - 2; row >= 0; row -= 1) {
     triangle[row].forEach((step, col) => {
