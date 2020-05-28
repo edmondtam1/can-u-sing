@@ -24,5 +24,3 @@ class Queue {
     return toDequeue.val;
   }
 }
-
-// 1=>2=>3
