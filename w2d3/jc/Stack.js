@@ -1,7 +1,9 @@
 const ListNode = require('./ListNode');
 
 class Stack {
-  first = {};
+  constructor() {
+    this.first = {};
+  }
 
   push(nodeVal) {
     if (!this.first) {
