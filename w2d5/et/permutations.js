@@ -2,11 +2,13 @@
 
 // Given a collection of distinct integers, return all possible permutations.
 
-// recursive
-// a permuted array is comprised of 
+// naive
+// go through all elements and keep building up a 3 element array
+// includes [1, 1, 1], [1, 1, 2] etc
+// then at the end, check if it's a valid solution
 
-// iterate across the array
-// 
+// recursive
+// a permuted array is comprised of all differently ordered elements
 
 const permute = nums => {
 
