@@ -13,7 +13,7 @@
 // root.right.left and root.right.right have to be greater than root
 // therefore implement a max and min to track the appropriate range for the tree
 
-const BST = require('./BST');
+const BST = require('../../utils/BST');
 
 const isValidBST = (root) => {
   return validBSThelper(root);

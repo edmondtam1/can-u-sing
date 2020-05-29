@@ -27,6 +27,10 @@ class Stack {
     if (!this.head) return null;
     return this.head.val;
   }
+
+  empty = () => {
+    return !!this.head;
+  }
 }
 
 module.exports = Stack;
