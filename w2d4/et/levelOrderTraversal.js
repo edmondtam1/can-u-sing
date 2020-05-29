@@ -31,7 +31,6 @@ const levelOrderBottom = root => {
       result.unshift(temp);
       temp = [];
     }
-
   }
   result.unshift(temp);
   return result;
