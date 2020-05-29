@@ -10,7 +10,7 @@
 // recurse down the tree and check if root === root.swap
 // at each depth, check if node.left at depth 
 
-const BST = require('./BST');
+const BST = require('../../utils/BST');
 
 const isSymmetric = root => {
   return symmetricHelper(root, root);

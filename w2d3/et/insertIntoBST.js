@@ -9,8 +9,8 @@
 // input: insertIntoBST(BST([4, 2, 7, 1, 3, null, null]), 5)
 // output: [4, 2, 7, 1, 3, 5, null]
 
-const TreeNode = require('./TreeNode');
-const BST = require('./BST');
+// const TreeNode = require('./TreeNode');
+const { BST, TreeNode } = require('../../utils/BST');
 
 const insertIntoBST = (root, val) => {
   if (!root) return new TreeNode(val);

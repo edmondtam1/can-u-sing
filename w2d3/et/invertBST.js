@@ -4,7 +4,7 @@
 
 // swap root.left with root.right until root === null
 
-const BST = require('./BST');
+const BST = require('../../utils/BST');
 
 const invertTree = root => {
   if (!root) return root;
