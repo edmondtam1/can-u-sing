@@ -8,6 +8,12 @@
  *
  *
  */
+
+/**
+ * Recursive definition
+ * - An inverted tree is the
+ */
+
 /**
  * @param {TreeNode} root
  * @return {TreeNode}

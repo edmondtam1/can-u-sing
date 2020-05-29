@@ -16,6 +16,12 @@
   // if we reach the end (null) on both sides, return true
   // if we reach the end on only one side, return false
  */
+
+/**
+ * Recursive definition
+ * - A tree is symetric if the left and right children match and the subtrees are symetric (mirror images) - REALLY??? Not sure about this def
+ */
+
 /**
  * @param {TreeNode} root
  * @return {boolean}
