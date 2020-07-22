@@ -9,12 +9,6 @@ Both the left and right subtrees must also be binary search trees.
 
 
 */
-function TreeNode(val, left, right) {
-  this.val = (val===undefined ? 0 : val)
-  this.left = (left===undefined ? null : left)
-  this.right = (right===undefined ? null : right)
-}
-
 var isValidBST = function(root) {
   return isValidHelper(root, -Infinity, Infinity);
 }
@@ -26,11 +20,14 @@ function isValidHelper(root, min, max) {
   return isValidHelper(root.right, root.val, max) && isValidHelper(root.left, min, root.val);
 }
 
-const root = new TreeNode(2);
-const node2 = new TreeNode(1);
-const node3 = new TreeNode(3);
+function TreeNode(val, left, right) {
+  this.val = (val===undefined ? 0 : val)
+  this.left = (left===undefined ? null : left)
+  this.right = (right===undefined ? null : right)
+}
 
-root.left = node2;
-root.right = node3;
+const node1 = new TreeNode(1);
+const node2 = new TreeNode(3);
+const root = new TreeNode(2, node1, node2);
 
 console.log(isValidBST(root));
